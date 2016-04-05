@@ -1,0 +1,62 @@
+{
+  "name": "yocto-paypal",
+  "version": "0.1.0",
+  "description": "Paypal wrapper for yoctopus stack",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yoctore/yocto-paypal.git"
+  },
+  "keywords": [
+    "Paypal",
+    "yoctopus"
+  ],
+  "author": {
+    "name": "Yocto SAS",
+    "email": "technique@yocto.re",
+    "url": "http://www.yocto.re"
+  },
+  "contributors": [
+    {
+      "name": "BALARD Cédric",
+      "email": "cedric@yocto.re"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "BALARD Cédric",
+      "email": "cedric@yocto.re"
+    }
+  ],
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "LICENSE-2.0.txt",
+    "README.md"
+  ],
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=4.2.1"
+  },
+  "bugs": {
+    "url": "https://github.com/yoctore/yocto-paypal/issues"
+  },
+  "homepage": "https://github.com/yoctore/yocto-paypal#readme",
+  "dependencies": {
+    "joi": "8.0.5",
+    "lodash": "4.6.1",
+    "paypal-rest-sdk": "1.6.8",
+    "yocto-logger": "1.1.3"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "grunt": "~0.4.5",
+    "grunt-contrib-uglify": "1.0.1",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "2.4.5",
+    "yocto-hint": "1.3.6"
+  }
+}
