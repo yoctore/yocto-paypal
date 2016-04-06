@@ -13,6 +13,8 @@ var utils   = require('yocto-utils');
 * - LodAsh : https://lodash.com/
 * - yocto-logger : http://github.com/yoctore/yocto-logger
 * - joi : https://github.com/hapijs/joi
+* - Q : https://github.com/kriskowal/q
+* - yocto-utils : https://github.com/yoctore/yocto-utils
 *
 * @date : 2016-04-04
 * @author : Cedric Balard <cedric@yocto.re>
@@ -63,7 +65,7 @@ YoctoPaypal.prototype.loadConfig = function (config) {
     this.logger.error('[ YoctoPaypal.loadConfig.joi ] - an error occured when loading ' +
     'configuration, more details : ' + result.error.toString());
     // Config file was not loaded
-    deferred.reject();
+    deferred.reject(result.error.toString());
     return deferred.promise;
   }
 
@@ -139,7 +141,7 @@ YoctoPaypal.prototype.createCreditCardAuthorization = function (paymentData) {
     this.logger.error('[ YoctoPaypal.createCreditCardAuthorization.joi ] - an error occured' +
     ' schema is not conform, more details : ' + result.error.toString());
     // Config file was not loaded
-    deferred.reject();
+    deferred.reject(result.error.toString());
     return deferred.promise;
   }
 
@@ -167,7 +169,7 @@ YoctoPaypal.prototype.createCreditCardAuthorization = function (paymentData) {
 };
 
 /**
- * Capture an previous authorization
+ * Capture an valid payment authorization
  *
  * @param  {String} id id of the authorization payment
  * @param  {Object} paymentData the necessary data to create payment authorization
@@ -188,11 +190,12 @@ YoctoPaypal.prototype.capturePayment = function (id, paymentData) {
         shipping  : joi.number().required().min(0)
       })
     }),
-    isFinalCapture  : joi.boolean().required()
+    isFinalCapture  : joi.boolean().required(),
+    id              : joi.string().required().empty()
   }));
 
   // validate joi schema with the given file
-  var result   = schema.validate(paymentData);
+  var result   = schema.validate(_.merge(paymentData, { id : id }));
 
   // check if an error occured
   if (result.error) {
@@ -200,7 +203,7 @@ YoctoPaypal.prototype.capturePayment = function (id, paymentData) {
     this.logger.error('[ YoctoPaypal.capturePayment.joi ] - an error occured' +
     ' schema is not conform, more details : ' + result.error.toString());
     // Config file was not loaded
-    deferred.reject();
+    deferred.reject(result.error.toString());
     return deferred.promise;
   }
 
@@ -240,6 +243,24 @@ YoctoPaypal.prototype.cancelPayment = function (id) {
 
   this.logger.debug('[ YoctoPaypal.cancelPayment ] - a new request will be send' +
   ' to cancel an payment authorization');
+
+  // schema of request
+  var schema = joi.object().required().keys({
+    id : joi.string().required().empty()
+  });
+
+  // validate joi schema with the given file
+  var result   = schema.validate({ id : id });
+
+  // check if an error occured
+  if (result.error) {
+    // An error occured joi schema is not conform
+    this.logger.error('[ YoctoPaypal.cancelPayment.joi ] - an error occured' +
+    ' schema is not conform, more details : ' + result.error.toString());
+    // Config file was not loaded
+    deferred.reject(result.error.toString());
+    return deferred.promise;
+  }
 
   // Create the payment on paypal, this will be the authorization payment
   this.paypal.authorization.void(id, function (error, payment) {

@@ -87,7 +87,7 @@ paypal.loadConfig({
     captureId = captureId.authorization.id;
     console.log('\n Capture id is ==> ', captureId);
 
-    paypal.cancelPayment(captureId, captureDetails).then(function (value) {
+    paypal.cancelPayment(captureId).then(function (value) {
 
       console.log('\n ===> payment captured, value : ', utils.obj.inspect(payment));
     }).catch(function (error) {
