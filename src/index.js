@@ -77,6 +77,7 @@ YoctoPaypal.prototype.loadConfig = function (config) {
   return deferred.promise;
 };
 
+// TODO : splité cette fonction en sous module comme "yocto-orika"
 /**
  * Create an authorization for an credit card
  *
@@ -102,7 +103,7 @@ YoctoPaypal.prototype.createCreditCardAuthorization = function (paymentData) {
             type            : joi.string().required().valid(['visa', 'delta', 'electron',
             'mastercard', 'eurocard', 'maestro', 'american exrpress']),
             number          : joi.number().integer().required(),
-            expireMonth     : joi.date().format('MM').required(),
+            expireMonth     : joi.number().min(1).max(12).required(),
             expireYear      : joi.date().format('YYYY').required(),
             firstName       : joi.string().required().empty(),
             lastName        : joi.string().required().empty(),

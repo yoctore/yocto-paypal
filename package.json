@@ -1,6 +1,6 @@
 {
   "name": "yocto-paypal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Paypal wrapper for yoctopus stack",
   "main": "dist/index.js",
   "scripts": {
@@ -47,18 +47,18 @@
   "homepage": "https://github.com/yoctore/yocto-paypal#readme",
   "dependencies": {
     "joi": "8.0.5",
-    "lodash": "4.6.1",
+    "lodash": "4.11.1",
     "paypal-rest-sdk": "1.6.8",
     "q": "^1.4.1",
-    "yocto-logger": "1.1.3",
+    "yocto-logger": "^1.1.6",
     "yocto-utils": "^1.2.8"
   },
   "devDependencies": {
     "chai": "3.5.0",
-    "grunt": "~0.4.5",
+    "grunt": "1.0.1",
     "grunt-contrib-uglify": "1.0.1",
     "grunt-mocha-test": "^0.12.7",
     "mocha": "2.4.5",
-    "yocto-hint": "1.3.6"
+    "yocto-hint": "^1.3.7"
   }
 }

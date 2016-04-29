@@ -26,7 +26,7 @@ var validPayment = {
       "credit_card": {
         "type": "visa",
         "number": "4446283280247004",
-        "expire_month": "11",
+        "expire_month": "01",
         "expire_year": "2018",
         "cvv2": "874",
         "first_name": "Joe",
