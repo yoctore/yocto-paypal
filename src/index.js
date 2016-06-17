@@ -97,7 +97,7 @@ YoctoPaypal.prototype.createCreditCardAuthorization = function (paymentData) {
         utils.obj.underscoreKeys({
           creditCard : joi.object().required().keys(
           _.merge({
-            cvv2        : joi.string().required().length(3)
+            cvv2        : joi.string().required().min(3).max(4)
           },
           utils.obj.underscoreKeys({
             type            : joi.string().required().valid(['visa', 'delta', 'electron',

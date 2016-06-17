@@ -1,3 +1,6 @@
+## 0.1.2 (2016-06-17)
+- Bug fixes : cvv2 length should be now equal to 3 or 4
+
 ## 0.1.1 (2016-04-29)
 - Bug fixes : now can use mont with number 1 -> to 12
 - update package.json
