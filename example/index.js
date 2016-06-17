@@ -10,8 +10,8 @@ var create_payment_json = {
     "payment_method": "credit_card",
     "funding_instruments": [{
       "credit_card": {
-        "type": "mastercard",
-        "number": "5295653100564508",
+        "type": "amex",
+        "number": "371449635398431",
         "expire_month": "06",
         "expire_year": "2016",
         "cvv2": "000",

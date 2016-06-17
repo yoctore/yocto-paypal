@@ -101,7 +101,7 @@ YoctoPaypal.prototype.createCreditCardAuthorization = function (paymentData) {
           },
           utils.obj.underscoreKeys({
             type            : joi.string().required().valid(['visa', 'delta', 'electron',
-            'mastercard', 'eurocard', 'maestro', 'american exrpress']),
+            'mastercard', 'eurocard', 'maestro', 'amex']),
             number          : joi.number().integer().required(),
             expireMonth     : joi.number().min(1).max(12).required(),
             expireYear      : joi.date().format('YYYY').required(),
