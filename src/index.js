@@ -120,7 +120,7 @@ YoctoPaypal.prototype.createCreditCardAuthorization = function (paymentData) {
       ))
     })),
     transactions  : joi.array().required().min(1).items(joi.object().keys({
-      amount        : joi.object().required().keys({
+      amount            : joi.object().required().keys({
         total     : joi.number().required().min(0),
         currency  : joi.string().required().empty(),
         details   : joi.object().optional().keys({
@@ -129,7 +129,9 @@ YoctoPaypal.prototype.createCreditCardAuthorization = function (paymentData) {
           shipping  : joi.number().required().min(0)
         })
       }),
-      description   : joi.string().required().empty()
+      description       : joi.string().required().empty(),
+      'invoice_number'  : joi.string().optional().empty(),
+      custom            : joi.string().optional().empty()
     }))
   });
 
